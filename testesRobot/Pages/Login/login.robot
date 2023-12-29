@@ -1,6 +1,7 @@
 *** Settings ***
 Library         SeleniumLibrary
 Resource        ../../shared/setup_teardown.robot
+Library         ../../python/Utils.py
 
 Test Setup      Open browser and search the homolog website
 
@@ -20,8 +21,10 @@ Do the login
 
 *** Keywords ***
 Complete the inputs
-    Input Text    ${CAMPO_EMAIL}    # email
-    Input Password    ${CAMPO_SENHA}    # senha
+    ${EMAIL}    Get Var From Env File    EMAIL
+    ${PASSWORD}    Get Var From Env File    SENHA
+    Input Text    ${CAMPO_EMAIL}    ${EMAIL}
+    Input Password    ${CAMPO_SENHA}    ${PASSWORD}
 
 Click on Enter button
     Click Button    id:submitButton

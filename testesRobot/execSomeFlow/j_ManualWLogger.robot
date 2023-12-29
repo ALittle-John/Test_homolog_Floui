@@ -1,6 +1,11 @@
 *** Settings ***
 Library     SeleniumLibrary
 Resource    ../../testesRobot/shared/setup_teardown.robot
+Library     ../../testesRobot/python/Utils.py
+
+
+*** Variables ***
+${Node_ID}      xg64mxa4f
 
 
 *** Test Cases ***
@@ -10,7 +15,7 @@ Exec João - Manual com logger
     Structure to enter in some specific flow
     Open the live debugger
     Exec the flow
-    Show the details
+    Show the details    ${Node_ID}
 
 
 *** Keywords ***
@@ -23,5 +28,17 @@ Exec the flow
     Click Button    id:executeButton
 
 Show the details
-    Click Element    //*[@id="debugger-logs"]/div/ol/li[2]/div[2]/a[2]
-    Sleep    2s
+    [Arguments]    ${log_id}    ${index}=0
+
+    ${x_path_index}    Evaluate    ${index} + ${1}
+    ${log_locator}    Set Variable
+    ...    xpath=(//li[@data-node-uid="${log_id}"])[${x_path_index}]//div[@class="log-message"]
+
+    Wait Until Element Is Visible    ${log_locator}
+
+    ${copy_log_locator}    Set Variable    ${log_locator}//a[contains(@class, "copy")]
+    Click Element    ${copy_log_locator}
+
+    ${log}    Get From Clipboard
+
+    RETURN    ${log}

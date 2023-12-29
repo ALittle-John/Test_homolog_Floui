@@ -1,5 +1,6 @@
 *** Settings ***
 Library     SeleniumLibrary
+Library     ../../testesRobot/python/Utils.py
 
 
 *** Variables ***
@@ -17,9 +18,11 @@ Open browser and search the homolog website    # teste para o login
 # Sim eu poderia colocar os 2 juntos, mas no momento de testar separado preciso destas keywords também separadas.
 
 Commun login
+    ${EMAIL}    Get Var From Env File    EMAIL
+    ${PASSWORD}    Get Var From Env File    SENHA
     Open browser and search the homolog website
-    Input Text    id:emailInput    # email
-    Input Password    id:passwordInput    # senha
+    Input Text    id:emailInput    ${EMAIL}
+    Input Password    id:passwordInput    ${PASSWORD}
     Click Button    id:submitButton
     Sleep    5s
 
