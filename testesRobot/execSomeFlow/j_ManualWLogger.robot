@@ -10,12 +10,13 @@ ${Node_ID}      xg64mxa4f
 
 *** Test Cases ***
 Exec João - Manual com logger
-    Run in to homolog home page
+    Run in to workspace
     Set Global Name Flow    João - Manual com logger
     Structure to enter in some specific flow
     Open the live debugger
     Exec the flow
-    Show the details    ${Node_ID}
+    ${details}    Show the details    ${Node_ID}
+    Log To Console    ${details}
 
 
 *** Keywords ***

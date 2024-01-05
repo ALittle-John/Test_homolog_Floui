@@ -10,7 +10,7 @@ ${NAME_FLOW}        João - Manual com logger
 
 *** Test Cases ***
 Search and enter in some Flow
-    Run in to homolog home page
+    Run in to workspace
     To type the Flow name
     Click on the enter key
     Enter in the Flow

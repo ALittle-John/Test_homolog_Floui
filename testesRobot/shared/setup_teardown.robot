@@ -31,7 +31,7 @@ Access workspace
     Wait Until Element Is Visible    css:button.accessWorkspace
     Click Element    css:button.accessWorkspace
 
-Run in to homolog home page
+Run in to workspace
     Commun login
     Access workspace
 
